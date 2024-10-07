@@ -4,81 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - 8UP・Community</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         :root {
-            --primary-color: #5865F2;
-            --background-color: #f9f9f9;
-            --text-color: #333;
-            --secondary-color: #2C2F33;
-            --border-color: #ddd;
-            --heading-color: #444;
+            --primary: #5865F2;
+            --background: #1a1a1a;
+            --text: #ffffff;
+            --secondary: #2c2f33;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #vfx-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         nav {
-            background-color: var(--primary-color);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(44, 47, 51, 0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
-        nav a {
-            color: #fff;
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
             text-decoration: none;
             margin-right: 1.5rem;
-            font-size: 1.1rem;
+            transition: color 0.3s;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         main {
-            max-width: 1200px;
-            margin: 3rem auto;
+            max-width: 1000px;
+            margin: 6rem auto 2rem;
             padding: 2rem;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(44, 47, 51, 0.8);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
             font-size: 2.5rem;
-            color: var(--primary-color);
+            color: var(--primary);
             text-align: center;
             margin-bottom: 1.5rem;
         }
 
         h2 {
-            color: var(--heading-color);
+            color: var(--primary);
             margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
         p, ul {
             font-size: 1.1rem;
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
         ul {
-            margin-left: 1.5rem;
+            margin-left: 2rem;
         }
 
         ul li {
             margin-bottom: 0.5rem;
         }
 
+        .content-section {
+            background-color: rgba(88, 101, 242, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.2);
+        }
+
         footer {
             text-align: center;
             padding: 1.5rem;
-            background-color: var(--primary-color);
+            background-color: rgba(44, 47, 51, 0.8);
             color: white;
             margin-top: 3rem;
+            backdrop-filter: blur(10px);
         }
 
         @media (max-width: 768px) {
@@ -93,57 +142,113 @@
     </style>
 </head>
 <body>
-
+    <div id="vfx-background"></div>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="terms_of_service.html">Terms of Service</a>
-        <a href="privacy_policy.html">Privacy Policy</a>
+        <div class="nav-content">
+            <a href="index.html" class="logo">8UP・Community</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="terms_of_service.html">Terms of Service</a>
+                <a href="privacy_policy.html">Privacy Policy</a>
+            </div>
+        </div>
     </nav>
 
     <main>
         <h1>Privacy Policy</h1>
         <p>Last updated: October 3, 2024</p>
 
-        <h2>1. Information We Collect</h2>
-        <ul>
-            <li>Server ID and settings</li>
-            <li>User IDs for administrative functions</li>
-            <li>Command usage logs</li>
-            <li>Server customization settings</li>
-        </ul>
+        <div class="content-section">
+            <h2>1. Information We Collect</h2>
+            <ul>
+                <li>Server ID and settings</li>
+                <li>User IDs for administrative functions</li>
+                <li>Command usage logs</li>
+                <li>Server customization settings</li>
+            </ul>
+        </div>
 
-        <h2>2. How We Use Information</h2>
-        <p>We use the information we collect to:</p>
-        <ul>
-            <li>Provide and improve the bot's services</li>
-            <li>Save server settings</li>
-            <li>Provide technical support</li>
-            <li>Analyze and improve bot performance</li>
-        </ul>
+        <div class="content-section">
+            <h2>2. How We Use Information</h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Provide and improve the bot's services</li>
+                <li>Save server settings</li>
+                <li>Provide technical support</li>
+                <li>Analyze and improve bot performance</li>
+            </ul>
+        </div>
 
-        <h2>3. Sharing Information</h2>
-        <p>We do not share your information with third parties except in the following cases:</p>
-        <ul>
-            <li>With your explicit consent</li>
-            <li>When legally required</li>
-            <li>To protect our rights or the rights of others</li>
-        </ul>
+        <div class="content-section">
+            <h2>3. Sharing Information</h2>
+            <p>We do not share your information with third parties except in the following cases:</p>
+            <ul>
+                <li>With your explicit consent</li>
+                <li>When legally required</li>
+                <li>To protect our rights or the rights of others</li>
+            </ul>
+        </div>
 
-        <h2>4. Data Security</h2>
-        <p>We take appropriate security measures to protect your information from unauthorized access, modification, disclosure, or destruction.</p>
+        <div class="content-section">
+            <h2>4. Data Security</h2>
+            <p>We take appropriate security measures to protect your information from unauthorized access, modification, disclosure, or destruction.</p>
+        </div>
 
-        <h2>5. Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-            <li>Access your data</li>
-            <li>Request deletion of your data</li>
-            <li>Modify privacy settings</li>
-        </ul>
+        <div class="content-section">
+            <h2>5. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your data</li>
+                <li>Request deletion of your data</li>
+                <li>Modify privacy settings</li>
+            </ul>
+        </div>
     </main>
 
     <footer>
         <p>All Rights Reserved © 2024 8UP・Community</p>
     </footer>
 
+    <script>
+        // Three.js VFX
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('vfx-background').appendChild(renderer.domElement);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x5865F2
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
