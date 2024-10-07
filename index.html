@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>8UP・Community - Discord Bot</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         :root {
             --primary: #5865F2;
@@ -26,8 +27,17 @@
             line-height: 1.6;
         }
 
+        #vfx-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
         nav {
-            background-color: var(--secondary);
+            background-color: rgba(44, 47, 51, 0.8);
             padding: 1rem;
             position: fixed;
             width: 100%;
@@ -70,9 +80,10 @@
         .hero {
             text-align: center;
             padding: 4rem 0;
-            background: linear-gradient(45deg, #5865F2, #7289da);
+            background: rgba(88, 101, 242, 0.2);
             border-radius: 1rem;
             margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         .hero h1 {
@@ -81,10 +92,11 @@
         }
 
         .content {
-            background-color: var(--secondary);
+            background-color: rgba(44, 47, 51, 0.8);
             padding: 2rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         h2 {
@@ -100,8 +112,9 @@
         .footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--secondary);
+            background-color: rgba(44, 47, 51, 0.8);
             margin-top: 4rem;
+            backdrop-filter: blur(10px);
         }
 
         .button {
@@ -116,6 +129,21 @@
 
         .button:hover {
             transform: translateY(-2px);
+        }
+
+        .command {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .command:hover {
+            transform: translateX(10px);
+        }
+
+        .command h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
 
         @media (max-width: 768px) {
@@ -136,6 +164,7 @@
     </style>
 </head>
 <body>
+    <div id="vfx-background"></div>
     <nav>
         <div class="nav-content">
             <a href="index.html" class="logo">8UP・Community</a>
@@ -161,15 +190,133 @@
             <ul>
                 <li>Advanced admin commands</li>
                 <li>Customizable welcome system</li>
-                <li>High-quality music system</li>
                 <li>Advanced server protection</li>
                 <li>Full customization for all settings</li>
+                <li>Leveling system and leaderboards</li>
+                <li>Poll creation</li>
+                <li>Quran recitation</li>
+                <li>Temporary voice channels</li>
             </ul>
+        </div>
+
+        <div class="content">
+            <h2>Available Commands</h2>
+            
+            <div class="command">
+                <h3>!avatar</h3>
+                <p>Display the user's profile picture.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!clear</h3>
+                <p>Clear a specified number of messages in the channel.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!dice</h3>
+                <p>Roll a dice randomly.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!giveaway</h3>
+                <p>Create and manage giveaways in the server.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!leaderboard</h3>
+                <p>Display the leaderboard for the leveling system.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!level</h3>
+                <p>Show the user's current level and points.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!ping</h3>
+                <p>Check the bot's response time.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!poll</h3>
+                <p>Create a poll in the channel.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!quran</h3>
+                <p>Recite verses from the Quran.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!setupchannels</h3>
+                <p>Set up the temporary voice channels system. When using this command, a special voice channel will be created that users can join to create their own temporary voice channels.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!setwelcome</h3>
+                <p>Set the welcome message for new members.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!user</h3>
+                <p>Display information about a specific user.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!vcadd</h3>
+                <p>Add a user to a temporary voice channel.</p>
+            </div>
+            
+            <div class="command">
+                <h3>!vcremove</h3>
+                <p>Remove a user from a temporary voice channel.</p>
+            </div>
         </div>
     </main>
 
     <footer class="footer">
         <p>All Rights Reserved © 2024 8UP・Community</p>
     </footer>
+
+    <script>
+        // Three.js VFX
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('vfx-background').appendChild(renderer.domElement);
+
+        const geometry = new THREE.IcosahedronGeometry(1, 0);
+        const material = new THREE.MeshBasicMaterial({ color: 0x5865F2, wireframe: true });
+        const icosahedron = new THREE.Mesh(geometry, material);
+        scene.add(icosahedron);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            icosahedron.rotation.x += 0.01;
+            icosahedron.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Interactive commands
+        document.querySelectorAll('.command').forEach(command => {
+            command.addEventListener('mouseenter', () => {
+                command.style.color = '#5865F2';
+            });
+            command.addEventListener('mouseleave', () => {
+                command.style.color = '#ffffff';
+            });
+        });
+    </script>
 </body>
 </html>
